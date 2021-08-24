@@ -1,8 +1,8 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# Todo-list
 
-> One paragraph statement about the project.
+> In this project we're challenged to create a todo-list, that has functions of adding and removing tasks and a drag-drop feature that can re-order the tasks and as optional personalize the styling for the list.;
 
 ![screenshot](./app_screenshot.png)
 
