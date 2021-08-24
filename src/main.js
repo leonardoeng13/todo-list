@@ -18,8 +18,8 @@ let data = localStorage.getItem("TODO");
 // check if data is not empty
 if(data){
     LIST = JSON.parse(data);
-    id = LIST.length; // set the id to the last one in the list
-    loadList(LIST); // load the list to the user interface
+    id = LIST.length;
+    loadList(LIST);
 }else{
     // if data isn't empty
     LIST = [];
