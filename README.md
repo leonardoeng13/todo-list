@@ -29,10 +29,37 @@ To get a local copy up and running follow these simple example steps.
 - Optional ( IDE installed in your machine ) - recommended IDE: Vscode;
 - Node installed locally;
 
+## Setup
+
+- To clone this repo:
+    - Open the Terminal(Mac/Linux) or the Cmd (Windows);
+    - Navigate to where you want to paste the Repo folder;
+    - Type git clone https://github.com/leonardoeng13/todo-list.git;
+    - Open the folder todo-list that was created on your IDE;
+
+
+## Install
+
+- To install all the dependencies in the package-lock.json:
+    - Open the Terminal(Mac/Linux) or the Cmd (Windows);
+    - Navigate to be inside the todo-list repo folder;
+    - Run npm install or npm i;
+
+## Run tests
+
+- Linters Tests:
+    - Eslint: run npx eslint .
+    - Stylelint: run npx stylelint "**/*.{css,scss}"
+    - WebHint: run npx hint --telemetry=off .
+    - LightHouse: run lhci autorun --upload.target=temporary-public-storage --collect.staticDistDir=.
+- Run a Live Version of the Dist Folder:
+    - Run npm start
+- To build the webpack:
+    - Run npm run build
 
 ## Authors
 
-👤 **Author1**
+👤 **Leonardo de Andrade**
 
 - GitHub: [@leonardoeng13](https://github.com/leonardoeng13)
 - Twitter: [@Leo Andrade](https://twitter.com/deandrede_leo)

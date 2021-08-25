@@ -8,19 +8,20 @@
     "watch": "webpack --watch",
     "start": "webpack serve --open",
     "build": "webpack",
-    "deploy": "npm run build && gh-pages -d dist"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leonardoeng13/Webpack-module.git"
+    "url": "git+https://github.com/leonardoeng13/todo-list.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/leonardoeng13/Webpack-module/issues"
+    "url": "https://github.com/leonardoeng13/todo-list/issues"
   },
-  "homepage": "https://github.com/leonardoeng13/Webpack-module#readme",
+  "homepage": "https://github.com/leonardoeng13/todo-list/src/index.html",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.2.0",
