@@ -32,7 +32,7 @@ To get a local copy up and running follow these simple example steps.
 
 ## Authors
 
-👤 **Author1**
+👤 **Leonardo de Andrade**
 
 - GitHub: [@leonardoeng13](https://github.com/leonardoeng13)
 - Twitter: [@Leo Andrade](https://twitter.com/deandrede_leo)
