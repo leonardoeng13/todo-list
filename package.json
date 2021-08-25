@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leonardoeng13/Webpack-module.git"
+    "url": "git+https://github.com/leonardoeng13/todo-list.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/leonardoeng13/Webpack-module/issues"
+    "url": "https://github.com/leonardoeng13/todo-list/issues"
   },
-  "homepage": "https://github.com/leonardoeng13/Webpack-module",
+  "homepage": "https://github.com/leonardoeng13/todo-list",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.2.0",
