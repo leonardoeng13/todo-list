@@ -1,13 +1,13 @@
 {
-  "name": "todo-list",
+  "name": "Webpack-module",
   "version": "1.0.0",
   "description": "![](https://img.shields.io/badge/Microverse-blueviolet)",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "todo-list --watch",
-    "start": "todo-list serve --open",
-    "build": "todo-list",
+    "watch": "webpack --watch",
+    "start": "webpack serve --open",
+    "build": "webpack",
     "deploy": "npm run build && gh-pages -d dist"
   },
   "repository": {
@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/leonardoeng13/todo-list/issues"
   },
-  "homepage": "https://github.com/leonardoeng13/todo-list",
+  "homepage": "https://github.com/leonardoeng13/todo-list/src/index.html",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.2.0",
