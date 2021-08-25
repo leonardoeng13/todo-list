@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/leonardoeng13/Webpack-module/issues"
   },
-  "homepage": "https://github.com/leonardoeng13/Webpack-module#readme",
+  "homepage": "https://github.com/leonardoeng13/Webpack-module",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.2.0",
