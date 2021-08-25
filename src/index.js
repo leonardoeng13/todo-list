@@ -2,7 +2,7 @@ import _ from 'lodash';
 import './style.css';
 import './font-awesome.css';
 import './main.js';
-// import Icon from './app_screenshot.png';
+import Icon from './app_screenshot.png';
 
 function component() {
   const element = document.createElement('div');
