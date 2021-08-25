@@ -16,7 +16,7 @@ Additional description about the project and its features.
 
 ## Live Demo
 
-[Live Demo Link](https://leonardoeng13.github.io/todo-list/)
+[Live Demo Link](https://leonardoeng13.github.io/todo-list/src/index.html)
 
 
 ## Getting Started
