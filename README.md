@@ -4,7 +4,7 @@
 
 > In this project we're challenged to create a todo-list, that has functions of adding and removing tasks and a drag-drop feature that can re-order the tasks and as optional personalize the styling for the list.;
 
-![screenshot](./src/app_screenshot.png)
+![screenshot](app_screenshot.png)
 
 Additional description about the project and its features.
 
