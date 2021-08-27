@@ -1,3 +1,6 @@
+import './style.css';
+import './font-awesome.css';
+
 const clear = document.querySelector('.clear');
 const dateElement = document.getElementById('date');
 const list = document.getElementById('list');
@@ -7,71 +10,74 @@ const CHECK = 'fa-check-circle';
 const UNCHECK = 'fa-circle-thin';
 const LINE_THROUGH = 'lineThrough';
 
-let LIST; let
-  id;
+let LIST;
 
 const data = localStorage.getItem('TODO');
 
-clear.addEventListener('click', () => {
-  localStorage.clear();
-  window.location.reload();
-});
+if (data) {
+  LIST = JSON.parse(data);
+} else {
+  LIST = [];
+  // id = 0;
+}
 
 const options = { weekday: 'long', month: 'short', day: 'numeric' };
 const today = new Date();
 
-dateElement.innerHTML = today.toLocaleDateString('en-US', options);
+function addToDo(toDo, done, trash, index) {
+  let id;
 
-function addToDo(toDo, id, done, trash) {
+  if (index >= 0) {
+    id = index;
+  } else {
+    id = LIST.length;
+  }
+
   if (trash) { return; }
-
   const DONE = done ? CHECK : UNCHECK;
   const LINE = done ? LINE_THROUGH : '';
 
   const item = `<li class="item">
                     <i class="fa ${DONE} co" job="complete" id="${id}"></i>
-                    <p class="text ${LINE}">${toDo}</p>
+                    <input id="${id}" class="text ${LINE}" placeholder="${toDo}" value="${toDo}"/>
                     <i class="fa fa-trash-o de" job="delete" id="${id}"></i>
                   </li>
                 `;
 
-  const position = 'beforeend';
+  list.innerHTML += item;
+}
 
-  list.insertAdjacentHTML(position, item);
+function updateToDo(index, text) {
+  LIST[index].name = text;
+  localStorage.setItem('TODO', JSON.stringify(LIST));
 }
 
 function loadList(array) {
-  array.forEach((item) => {
-    addToDo(item.name, item.id, item.done, item.trash);
+  list.innerHTML = '';
+  array.forEach((item, index) => {
+    addToDo(item.name, item.done, item.trash, index);
   });
 }
 
-if (data) {
-  LIST = JSON.parse(data);
-  id = LIST.length;
-  loadList(LIST);
-} else {
-  LIST = [];
-  id = 0;
-}
+loadList(LIST);
+
+dateElement.innerHTML = today.toLocaleDateString('en-US', options);
 
 document.addEventListener('keyup', (event) => {
   if (event.keyCode === 13) {
     const toDo = input.value;
 
     if (toDo) {
-      addToDo(toDo, id, false, false);
+      addToDo(toDo, false, false);
 
       LIST.push({
         name: toDo,
-        id,
+        id: LIST.length,
         done: false,
         trash: false,
       });
 
       localStorage.setItem('TODO', JSON.stringify(LIST));
-
-      id += id + 1;
     }
     input.value = '';
   }
@@ -81,19 +87,22 @@ function completeToDo(element) {
   element.classList.toggle(CHECK);
   element.classList.toggle(UNCHECK);
   element.parentNode.querySelector('.text').classList.toggle(LINE_THROUGH);
-
   LIST[element.id].done = !LIST[element.id].done;
+  // localStorage.setItem('TODO', JSON.stringify(LIST));
 }
 
 function removeToDo(element) {
   element.parentNode.parentNode.removeChild(element.parentNode);
-
-  LIST[element.id].trash = true;
+  LIST.splice(element.id, 1);
+  LIST.forEach((item, id) => { item.id = id; });
+  localStorage.setItem('TODO', JSON.stringify(LIST));
+  loadList(LIST);
 }
 
 list.addEventListener('click', (event) => {
   const element = event.target;
-  const elementJob = element.attributes.job.value;
+  // const elementJob = element.attributes.job.value;
+  const elementJob = (element.attributes.job) ? element.attributes.job.value : '';
 
   if (elementJob === 'complete') {
     completeToDo(element);
@@ -102,4 +111,28 @@ list.addEventListener('click', (event) => {
   }
 
   localStorage.setItem('TODO', JSON.stringify(LIST));
+});
+
+window.addEventListener('click', (event) => {
+  const element = event.target;
+
+  if (element.className.includes('text')) {
+    event.target.addEventListener('keyup', () => {
+      updateToDo(element.id, element.value);
+    });
+
+    event.target.addEventListener('blur', () => {
+      updateToDo(element.id, element.value);
+    });
+  }
+
+  localStorage.setItem('TODO', JSON.stringify(LIST));
+});
+
+clear.addEventListener('click', () => {
+  // localStorage.clear();
+  LIST = LIST.filter((item) => !item.done);
+  LIST.forEach((item, id) => { item.id = id; });
+  localStorage.setItem('TODO', JSON.stringify(LIST));
+  window.location.reload();
 });
