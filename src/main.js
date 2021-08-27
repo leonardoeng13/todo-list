@@ -39,12 +39,17 @@ function addToDo(toDo, done, trash, index) {
 
   const item = `<li class="item">
                     <i class="fa ${DONE} co" job="complete" id="${id}"></i>
-                    <input class="text ${LINE}" placeholder="${toDo}" value="${toDo}"/>
+                    <input id="${id}" class="text ${LINE}" placeholder="${toDo}" value="${toDo}"/>
                     <i class="fa fa-trash-o de" job="delete" id="${id}"></i>
                   </li>
                 `;
 
   list.innerHTML += item;
+}
+
+function updateToDo(index, text) {
+  LIST[index].name = text;
+  localStorage.setItem('TODO', JSON.stringify(LIST));
 }
 
 function loadList(array) {
@@ -96,13 +101,29 @@ function removeToDo(element) {
 
 list.addEventListener('click', (event) => {
   const element = event.target;
-  const elementJob = element.attributes.job.value;
-  console.log(elementJob);
+  // const elementJob = element.attributes.job.value;
+  const elementJob = (element.attributes.job) ? element.attributes.job.value : '';
 
   if (elementJob === 'complete') {
     completeToDo(element);
   } else if (elementJob === 'delete') {
     removeToDo(element);
+  }
+
+  localStorage.setItem('TODO', JSON.stringify(LIST));
+});
+
+window.addEventListener('click', (event) => {
+  const element = event.target;
+
+  if (element.className.includes('text')) {
+    event.target.addEventListener('keyup', () => {
+      updateToDo(element.id, element.value);
+    });
+
+    event.target.addEventListener('blur', () => {
+      updateToDo(element.id, element.value);
+    });
   }
 
   localStorage.setItem('TODO', JSON.stringify(LIST));
