@@ -7,22 +7,23 @@ const CHECK = 'fa-check-circle';
 const UNCHECK = 'fa-circle-thin';
 const LINE_THROUGH = 'lineThrough';
 
-let LIST; let
-  id;
+let LIST;
+let id;
 
 const data = localStorage.getItem('TODO');
 
 clear.addEventListener('click', () => {
-  localStorage.clear();
+  // localStorage.clear();
+  LIST.forEach((item, id) => { item.id = id; });
+  localStorage.setItem('TODO', JSON.stringify(LIST));
   window.location.reload();
 });
 
 const options = { weekday: 'long', month: 'short', day: 'numeric' };
 const today = new Date();
 
-dateElement.innerHTML = today.toLocaleDateString('en-US', options);
-
-function addToDo(toDo, id, done, trash) {
+function addToDo(toDo, done, trash) {
+  const id = LIST.length;
   if (trash) { return; }
 
   const DONE = done ? CHECK : UNCHECK;
@@ -52,8 +53,10 @@ if (data) {
   loadList(LIST);
 } else {
   LIST = [];
-  id = 0;
+  // id = 0;
 }
+
+dateElement.innerHTML = today.toLocaleDateString('en-US', options);
 
 document.addEventListener('keyup', (event) => {
   if (event.keyCode === 13) {
@@ -64,14 +67,14 @@ document.addEventListener('keyup', (event) => {
 
       LIST.push({
         name: toDo,
-        id,
+        id: LIST.length,
         done: false,
         trash: false,
       });
 
       localStorage.setItem('TODO', JSON.stringify(LIST));
 
-      id += id + 1;
+      id += 1;
     }
     input.value = '';
   }
@@ -87,8 +90,9 @@ function completeToDo(element) {
 
 function removeToDo(element) {
   element.parentNode.parentNode.removeChild(element.parentNode);
-
-  LIST[element.id].trash = true;
+  LIST.splice(element.id, 1);
+  LIST.forEach((item, id) => { item.id = id; });
+  localStorage.setItem('TODO', JSON.stringify(LIST));
 }
 
 list.addEventListener('click', (event) => {
@@ -99,6 +103,7 @@ list.addEventListener('click', (event) => {
     completeToDo(element);
   } else if (elementJob === 'delete') {
     removeToDo(element);
+    localStorage.removeItem(element);
   }
 
   localStorage.setItem('TODO', JSON.stringify(LIST));
